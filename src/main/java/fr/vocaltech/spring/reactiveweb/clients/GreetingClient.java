@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @Component
 public class GreetingClient {
     private final WebClient client;
@@ -19,6 +21,7 @@ public class GreetingClient {
                 .get().uri("/hello").accept(MediaType.APPLICATION_JSON)
                 .retrieve().bodyToMono(Greeting.class)
                 .map(Greeting::getMessage);
+
     }
 
 }
