@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
-public class EmployeeRepository {
+public class EmployeeRepositoryMap implements EmployeeRepository {
     static Map<String, Employee> employees;
 
     static {
@@ -22,5 +22,4 @@ public class EmployeeRepository {
     public Flux<Employee> findAllEmployees() {
         return Flux.fromIterable(employees.values());
     }
-
 }
