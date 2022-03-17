@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
 	implementation 'org.projectlombok:lombok'
 
@@ -24,7 +25,8 @@ dependencies {
 }
 
 springBoot {
-	mainClass = 'fr.vocaltech.spring.reactiveweb.GreetingSpringApplication'
+	//mainClass = 'fr.vocaltech.spring.reactiveweb.GreetingSpringApplication'
+	mainClass = 'fr.vocaltech.spring.reactiveweb.AccountSpringApplication'
 }
 
 tasks.named('test') {
