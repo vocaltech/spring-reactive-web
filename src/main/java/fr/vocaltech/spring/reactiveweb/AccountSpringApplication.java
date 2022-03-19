@@ -23,13 +23,6 @@ public class AccountSpringApplication {
             //Account saved = accountCrudRepository.save(new Account("2", "name2", 405000.0));
             //Account saved = accountCrudRepository.save(new Account("3", "name3", 35030.0));
 
-            /*
-            List<Account> accounts = accountCrudRepository.findAll();
-            for (Account account: accounts) {
-                System.out.println("account: " + account);
-            }
-            */
-
             Flux<Account> accounts = accountCrudRepository.findAll();
             accounts.subscribe(account -> System.out.println(account));
         };
