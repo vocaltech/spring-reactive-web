@@ -39,4 +39,16 @@ public class AccountSpringApplicationTest {
                 })
                 .verifyComplete();
     }
+
+    @Test
+    void testFindById() {
+        Mono<Account> accountById$ = accountCrudRepository.findById("2");
+
+        StepVerifier.create(accountById$)
+                .assertNext(account -> {
+                    assertEquals("2", account.getId());
+                    assertEquals("name2", account.getOwner());
+                })
+                .verifyComplete();
+    }
 }
