@@ -1,4 +1,4 @@
-package fr.vocaltech.spring.reactiveweb.config;
+package fr.vocaltech.spring.reactiveweb.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,10 +17,12 @@ import org.springframework.security.web.server.WebFilterExchange;
 import org.springframework.security.web.server.authentication.ServerAuthenticationSuccessHandler;
 import reactor.core.publisher.Mono;
 
+/*
 @EnableWebFluxSecurity
 @Configuration
+*/
 public class SecurityCfg {
-    @Bean
+    //@Bean
     public MapReactiveUserDetailsService userDetailsService() {
         //PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
@@ -34,7 +36,7 @@ public class SecurityCfg {
         return new MapReactiveUserDetailsService(user);
     }
 
-    @Bean
+    //@Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         http
                 .authorizeExchange(exchanges -> exchanges.anyExchange().authenticated())
