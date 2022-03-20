@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import fr.vocaltech.spring.reactiveweb.models.User;
 import fr.vocaltech.spring.reactiveweb.repositories.UserRepository;
-import reactor.core.publisher.Mono;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -23,6 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
 
         System.out.println("---> [CustomUserDetailsService.loadUserByUsername()] logged as: " + user.getUsername());
+        System.out.println("---> [CustomUserDetailsService.loadUserByUsername()] roles: " + user.getRoles());
 
         return new CustomUserPrincipal(user);
     }
