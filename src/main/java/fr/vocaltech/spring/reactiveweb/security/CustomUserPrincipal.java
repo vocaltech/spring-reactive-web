@@ -1,14 +1,19 @@
 package fr.vocaltech.spring.reactiveweb.security;
 
-import fr.vocaltech.spring.reactiveweb.models.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import fr.vocaltech.spring.reactiveweb.models.User;
+import fr.vocaltech.spring.reactiveweb.models.Role;
 
+import java.util.*;
+
+@JsonIgnoreProperties(value = { "password" })
 public class CustomUserPrincipal implements UserDetails {
+    @JsonIgnore
     private final User user;
 
     public CustomUserPrincipal(User user) {
@@ -31,7 +36,14 @@ public class CustomUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.<GrantedAuthority>singletonList(new SimpleGrantedAuthority("USER"));
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        Set<Role> roles = user.getRoles();
+        for (Role role: roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName().toString()));
+        }
+
+        return authorities;
     }
 
     @Override
