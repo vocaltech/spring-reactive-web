@@ -35,6 +35,7 @@ public class CustomSecurityCfg extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/username").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic(Customizer.withDefaults())
