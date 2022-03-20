@@ -9,5 +9,5 @@ import reactor.core.publisher.Mono;
 public interface AccountCrudRepository extends ReactiveCrudRepository<Account, String> {
     Flux<Account> findAll();
     Mono<Long> count();
-    Mono<Account> findById(String s);
+    Mono<Account> findById(String id);
 }
