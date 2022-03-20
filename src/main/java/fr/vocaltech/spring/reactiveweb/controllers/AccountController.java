@@ -26,10 +26,7 @@ public class AccountController {
         return accountCrudRepository.findAll();
     }
 
-    @GetMapping(
-            path = "/{id}",
-            produces = MediaType.TEXT_EVENT_STREAM_VALUE
-    )
+    @GetMapping(path = "/{id}")
     public Mono<Account> getAccountById(@PathVariable String id) {
         return accountCrudRepository.findById(id);
     }
